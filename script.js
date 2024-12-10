@@ -71,7 +71,12 @@ recipe_IngPlus.addEventListener("click", ()=>{
 // delete ingredents inputs
 const delIngInp = (elem) =>{
     elem.addEventListener("click", ()=>{
-        elem.parentElement.remove()
+        if(ingredientElems.childElementCount > 2){
+            elem.parentElement.remove();
+        }
+        else{
+            elem.value = "";
+        }
     });
 };
 
@@ -106,6 +111,21 @@ const updateDisplay = () =>{
     newCard.classList.add("main_card");
     newCard.innerHTML = `${cardHtml}`;
     main_boxes.appendChild(newCard);
+    recipeName.value = "";
+    shortDecs.value = "";
+    categroies.value = "breakfast";
+    difficulty.value = "easy";
+    approxTime.value = "less then 30 mins";
+    thumnail.src = "assets/placeholder.png";
+    ingredientName.forEach((e)=>{
+        if(ingredientElems.childElementCount > 2){
+            e.parentElement.remove();
+        }
+        else{
+            e.value = "";
+            e.parentElement.childNodes[2].value = "";
+        }
+    });
 };
 // onload Check
 const onLoadCheck = () =>{
