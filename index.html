@@ -20,7 +20,7 @@
                         <a href="#">Home</a>
                         <a href="#">All Recipes</a>
                         <a href="#">Favorites</a>
-                        <button class="btn-primary"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
+                        <button class="btn-primary" onclick="openRecipeForm()"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
                             <path stroke-linecap="round" stroke-linejoin="round" d="m16.862 4.487 1.687-1.688a1.875 1.875 0 1 1 2.652 2.652L10.582 16.07a4.5 4.5 0 0 1-1.897 1.13L6 18l.8-2.685a4.5 4.5 0 0 1 1.13-1.897l8.932-8.931Zm0 0L19.5 7.125M18 14v4.75A2.25 2.25 0 0 1 15.75 21H5.25A2.25 2.25 0 0 1 3 18.75V8.25A2.25 2.25 0 0 1 5.25 6H10" />
                           </svg> Add Recipe</button>
                     </div>
@@ -33,7 +33,7 @@
                 <div class="hero_sec">
                     <h1>Your Recipes, <span>Your Way</span> <br>  Cook, Organize, Savor!</h1>
                     <p>Say goodbye to scattered recipes and kitchen chaos! With our app, you can easily save, organize, and discover your favorite meals in one place. Whether you're a seasoned chef or a home cook, we make managing your culinary adventures simple and enjoyable. It's time to create with confidence and savor every moment!</p>
-                    <button class="btn-primary"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="size-6">
+                    <button class="btn-primary" onclick="openRecipeForm()"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="size-6">
                         <path fill-rule="evenodd" d="M12 3.75a.75.75 0 0 1 .75.75v6.75h6.75a.75.75 0 0 1 0 1.5h-6.75v6.75a.75.75 0 0 1-1.5 0v-6.75H4.5a.75.75 0 0 1 0-1.5h6.75V4.5a.75.75 0 0 1 .75-.75Z" clip-rule="evenodd" />
                       </svg>  Add Recipe</button>
                 </div>
@@ -48,14 +48,14 @@
                             <path d="M19.906 9c.382 0 .749.057 1.094.162V9a3 3 0 0 0-3-3h-3.879a.75.75 0 0 1-.53-.22L11.47 3.66A2.25 2.25 0 0 0 9.879 3H6a3 3 0 0 0-3 3v3.162A3.756 3.756 0 0 1 4.094 9h15.812ZM4.094 10.5a2.25 2.25 0 0 0-2.227 2.568l.857 6A2.25 2.25 0 0 0 4.951 21H19.05a2.25 2.25 0 0 0 2.227-1.932l.857-6a2.25 2.25 0 0 0-2.227-2.568H4.094Z" />
                           </svg>                          
                           <h3>You don't have <br>any recipes saved yet.</h3>
-                          <button class="btn-primary">Add Recipe</button>                        
+                          <button class="btn-primary" onclick="openRecipeForm()">Add Recipe</button>                        
                     </div>
                     <div class="main_content dp_flex">
                         <h3>Your Saved Recipes</h3>
                         <a href="#">Filters</a>
                     </div>
                     <div class="main_boxes dp_flex">
-                        <div class="main_card">
+                        <!-- <div class="main_card">
                             <img src="https://images.unsplash.com/photo-1562629645-05c0da5984e9?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3wyMDUzMDJ8MHwxfHNlYXJjaHwxMHx8QmFuYW5hJTIwRnJ1aXQlMjBTYWxhZHxlbnwxfHx8fDE2ODU0NjM0ODd8MA&ixlib=rb-4.0.3&q=80&w=1080" alt="thumbnail">
                             <div class="title_gp dp_flex">
                              <h3>Banana Fruit Salad</h3>
@@ -68,7 +68,7 @@
                                 <a href="#">View Details</a>
                                 <a href="#">Delete</a>
                             </div>
-                        </div>
+                        </div> -->
                     </div>
                 </div>
             </div>
@@ -86,43 +86,39 @@
           <!-- recipeForm -->
           <section id="recipeForm">
             <div class="recipeForm-sec dp_flex">
-                <div class="close_icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="size-6">
+                <div class="close_icon" onclick="closeRecipeForm()"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="size-6">
                     <path fill-rule="evenodd" d="M5.47 5.47a.75.75 0 0 1 1.06 0L12 10.94l5.47-5.47a.75.75 0 1 1 1.06 1.06L13.06 12l5.47 5.47a.75.75 0 1 1-1.06 1.06L12 13.06l-5.47 5.47a.75.75 0 0 1-1.06-1.06L10.94 12 5.47 6.53a.75.75 0 0 1 0-1.06Z" clip-rule="evenodd" />
                   </svg></div>
-                <div class="recipeForm-image">
-                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="size-6">
-                        <path d="M12 9a3.75 3.75 0 1 0 0 7.5A3.75 3.75 0 0 0 12 9Z" />
-                        <path fill-rule="evenodd" d="M9.344 3.071a49.52 49.52 0 0 1 5.312 0c.967.052 1.83.585 2.332 1.39l.821 1.317c.24.383.645.643 1.11.71.386.054.77.113 1.152.177 1.432.239 2.429 1.493 2.429 2.909V18a3 3 0 0 1-3 3h-15a3 3 0 0 1-3-3V9.574c0-1.416.997-2.67 2.429-2.909.382-.064.766-.123 1.151-.178a1.56 1.56 0 0 0 1.11-.71l.822-1.315a2.942 2.942 0 0 1 2.332-1.39ZM6.75 12.75a5.25 5.25 0 1 1 10.5 0 5.25 5.25 0 0 1-10.5 0Zm12-1.5a.75.75 0 1 0 0-1.5.75.75 0 0 0 0 1.5Z" clip-rule="evenodd" />
-                      </svg>
-                    <h3>Choose Recipe thumbnail</h3>
-                    <input type="file">
+                <div  class="recipeForm-image dp_flex">
+                    <img src="assets/placeholder.png" id="uploadImage" alt="">
                 </div>
+                <input type="file" id="fileInput" hidden>
                 <div class="recipeForm-form dp_flex">
                     <div class="recipe_form-gp">
-                        <label for="">Recipe Name:</label>
-                        <input type="text" placeholder="Recipe Name...">
+                        <label for="recipepName">Recipe Name:</label>
+                        <input type="text" name="recipepName" id="recipeName" placeholder="Recipe Name...">
                     </div>
                     <div class="recipe_form-gp">
-                        <label for="">Short Description:</label>
-                        <textarea placeholder="Important Things about recipe..."></textarea>
+                        <label for="shortDecs">Short Description:</label>
+                        <textarea id="shortDecs" placeholder="Important Things about recipe..."></textarea>
                     </div>
                     <div class="recipe_form-gp">
                         <label for="">Category:</label>
-                        <select name="diff">
-                            <option value="easy">Breakfast</option>
-                            <option value="medium">Healthy Snacks</option>
-                            <option value="hard">Fast Food</option>
-                            <option value="hard">Quick Meals</option>
-                            <option value="hard">Desserts & Sweets</option>
-                            <option value="hard">Vegan & Vegetarian</option>
-                            <option value="hard">Meat</option>
-                            <option value="hard">Kids' Favorites</option>
+                        <select name="categories" id="categroies">
+                            <option value="breakfast">Breakfast</option>
+                            <option value="healthy_snacks">Healthy Snacks</option>
+                            <option value="fast_food">Fast Food</option>
+                            <option value="quick_meal">Quick Meals</option>
+                            <option value="desserts_sweets">Desserts & Sweets</option>
+                            <option value="vegan_vegetarian">Vegan & Vegetarian</option>
+                            <option value="meat">Meat</option>
+                            <option value="kids_favorites">Kids' Favorites</option>
                         </select>
                         <p>Selecting a category is recommended; it will help you organize later by category.</p>
                     </div>
                     <div class="recipe_form-gp">
                         <label for="">Choose Difficulty:</label>
-                        <select name="diff">
+                        <select name="difficulty" id="difficulty">
                             <option value="easy">Easy</option>
                             <option value="medium">Medium</option>
                             <option value="hard">Hard</option>
@@ -130,15 +126,15 @@
                     </div>
                     <div class="recipe_form-gp">
                         <label for="">Approx Time:</label>
-                        <select name="diff">
-                            <option value="easy"> Less then 30 mins </option>
-                            <option value="medium">More then 30 mins</option>
-                            <option value="hard">1 Hour</option>
-                            <option value="hard">2 Hour</option>
-                            <option value="hard">More then 2 hours</option>
+                        <select name="approxTime" id="approxTime">
+                            <option value="less then 30 mins"> Less then 30 mins </option>
+                            <option value="more then 30 mins">More then 30 mins</option>
+                            <option value="1 hour">1 Hour</option>
+                            <option value="2 hour">2 Hour</option>
+                            <option value="more then 2 hours">More then 2 hours</option>
                         </select>
                     </div>
-                    <div class="recipe_form-gp">
+                    <div class="recipe_form-gp ingredientElems">
                         <div class="recipe_formSub-con dp_flex">
                          <label for="">Ingredeints:</label>
                          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="size-6">
@@ -146,8 +142,8 @@
                           </svg>                          
                         </div>
                         <div class="recipe_formSub-gp dp_flex">
-                            <input type="text" placeholder="Ingredeint Name">
-                            <input type="text" placeholder="Quanitity">
+                            <input type="text" class="ingName" placeholder="Ingredeint Name">
+                            <input type="text" class="quanPercs" placeholder="Quanitity">
                             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="size-6">
                                 <path fill-rule="evenodd" d="M16.5 4.478v.227a48.816 48.816 0 0 1 3.878.512.75.75 0 1 1-.256 1.478l-.209-.035-1.005 13.07a3 3 0 0 1-2.991 2.77H8.084a3 3 0 0 1-2.991-2.77L4.087 6.66l-.209.035a.75.75 0 0 1-.256-1.478A48.567 48.567 0 0 1 7.5 4.705v-.227c0-1.564 1.213-2.9 2.816-2.951a52.662 52.662 0 0 1 3.369 0c1.603.051 2.815 1.387 2.815 2.951Zm-6.136-1.452a51.196 51.196 0 0 1 3.273 0C14.39 3.05 15 3.684 15 4.478v.113a49.488 49.488 0 0 0-6 0v-.113c0-.794.609-1.428 1.364-1.452Zm-.355 5.945a.75.75 0 1 0-1.5.058l.347 9a.75.75 0 1 0 1.499-.058l-.346-9Zm5.48.058a.75.75 0 1 0-1.498-.058l-.347 9a.75.75 0 0 0 1.5.058l.345-9Z" clip-rule="evenodd" />
                               </svg>                              
