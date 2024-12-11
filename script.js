@@ -16,7 +16,17 @@ let approxTime = document.getElementById("approxTime");
 const recipe_IngPlus = document.querySelector(".recipe_formSub-con svg");
 let ingredientName = document.querySelectorAll(".ingName");
 let quantityName = document.querySelectorAll(".quanPercs");
-const SaveRecipe = document.querySelector(".recipe_form-cta button")
+const SaveRecipe = document.querySelector(".recipe_form-cta button");
+// detailPage
+const detailPage = document.getElementById("detailPage");
+const closeDetail = document.querySelector(".detailPage_sec .close_icon");
+const detailImg = document.getElementById("detailImg");
+const detailTag = document.querySelector(".tag");
+const detailTitle = document.getElementById("detailTitle");
+const detailDesc = document.getElementById("detailDesc");
+const detailDiffi = document.getElementById("detailDiffi");
+const detailApproxTIme = document.getElementById("detailApproxTIme");
+const detailCategory = document.getElementById("detailCategory");
 
 // others
 let recipeVal;
@@ -43,6 +53,8 @@ const closeRecipeForm = () =>{
         recipeForm.style.opacity = 0;
     }, 200)
 };
+// detailPage
+closeDetail.addEventListener("click", ()=>{detailPage.style.visibility = "hidden"; detailPage.style.opacity = 0;})
 uploadImage.addEventListener("click", () =>{
     fileInput.click();
 });
@@ -103,12 +115,25 @@ SaveRecipe.addEventListener("click", () => {
 
 // Save to LocalStorage
 const saveLocalStorage = () => {
+    let getIngredientsVal = [];
+    let getQuantityVal = [];
     const recipeCard = {
         image: thumnail.src || "assets/placeholder.png", // Fallback for missing image
         title: recipeVal,
-        desc: shortDescVal
+        desc: shortDescVal,
+        category: categoryVal,
+        difficulty: difficultVal,
+        takenTime: approxVal,
+        allIngredients: getIngredientsVal,
+        allQuantities: getQuantityVal
     };
 
+    Array.from(ingredientName).forEach((e)=>{
+        getIngredientsVal.push(e.value);
+    });
+    Array.from(quantityName).forEach((e)=>{
+        getQuantityVal.push(e.value);
+    });
     // Get existing recipes or create an empty array
     const savedRecipes = JSON.parse(localStorage.getItem("recipes")) || [];
     savedRecipes.push(recipeCard);
@@ -129,15 +154,55 @@ const appendCard = (recipeCard) => {
                     </div>
                     <p>${recipeCard.desc}</p>
                     <div class="main_card-cta">
-                        <a href="#">View Details</a>
-                        <a href="#">Delete</a>
+                        <a>View Details</a>
+                        <a>Delete</a>
                     </div>`;
     let newCard = document.createElement("div");
     newCard.classList.add("main_card");
     newCard.innerHTML = cardHtml;
     main_boxes.appendChild(newCard);
+    getFullDetails(newCard);
+    deleteRecipeCard(newCard);
 };
-
+// delete card from localstorage & dom
+const deleteRecipeCard = (theTarget) =>{
+    let searchItem = JSON.parse(localStorage.getItem("recipes"));
+    theTarget.addEventListener("click", (elem) => {
+        if (elem.target.innerText === "Delete") { // Check if the clicked element is the delete link
+            const cardIndex = Array.from(main_boxes.children).indexOf(theTarget); // Find the index of the clicked card
+            if (cardIndex !== -1) {
+                if(confirm("Wanna delete recipe?")){
+                    searchItem.splice(cardIndex, 1);
+                    localStorage.setItem("recipes", JSON.stringify(searchItem));
+                    theTarget.remove();
+                    onLoadCheck();
+                }
+            }
+        }
+    });
+};
+const getFullDetails = (theTarget) =>{
+    let searchItem = JSON.parse(localStorage.getItem("recipes"));
+    theTarget.addEventListener("click", (e)=>{
+        let searchTitle = e.target.parentElement.parentElement.childNodes[2].childNodes[1].textContent;
+        searchItem.forEach((e)=>{
+            if(searchTitle === e.title){
+                detailImg.src = e.image;
+                detailTag.textContent = e.category
+                detailTitle.textContent = e.title;
+                detailDesc.textContent = e.desc;
+                detailDiffi.textContent = e.difficulty;
+                detailApproxTIme.textContent = e.takenTime;
+                detailCategory.textContent = e.category;
+                
+            };
+        });
+        if(e.target.innerText === "View Details"){
+            detailPage.style.visibility = "visible";
+            detailPage.style.opacity = 1;
+        }
+    });
+}
 // Load Recipes from LocalStorage on Page Load
 const loadRecipes = () => {
     const savedRecipes = JSON.parse(localStorage.getItem("recipes")) || [];
@@ -167,7 +232,7 @@ const clearForm = () => {
         quantityName[index].value = "";
 
         // Remove extra fields if more than the default count
-        if (index > 1) {
+        if (index >= 1) {
             e.parentElement.remove();
         }
     });
