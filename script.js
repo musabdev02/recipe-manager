@@ -25,6 +25,8 @@ let categoryVal;
 let difficultVal;
 let approxVal;
 let thumnail = uploadImage;
+let parsedData;
+let totalRecipes = 0;
 
 // recipeForm
 const openRecipeForm = () =>{
@@ -80,63 +82,106 @@ const delIngInp = (elem) =>{
     });
 };
 
-SaveRecipe.addEventListener("click", ()=>{
+SaveRecipe.addEventListener("click", () => {
     ingredientName = document.querySelectorAll(".ingName");
     quantityName = document.querySelectorAll(".quanPercs");
-    recipeVal = recipeName.value;
-    shortDescVal = shortDecs.value;
+    recipeVal = recipeName.value.trim();
+    shortDescVal = shortDecs.value.trim();
     categoryVal = categroies.value;
     difficultVal = difficulty.value;
     approxVal = approxTime.value;
+
+    if (!recipeVal || !shortDescVal) {
+        alert("Please enter recipe name & description!");
+        return;
+    }
+
     closeRecipeForm();
-    updateDisplay();
+    saveLocalStorage();
     onLoadCheck();
 });
 
-// append Card on hompage
-const updateDisplay = () =>{
-    let cardHtml = `<img src="${thumnail.src}" alt="thumbnail">
-                            <div class="title_gp dp_flex">
-                             <h3>${recipeVal}</h3>
-                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
-                                <path stroke-linecap="round" stroke-linejoin="round" d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12Z" />
-                              </svg>                              
-                            </div>
-                            <p>${shortDescVal}</p>
-                            <div class="main_card-cta">
-                                <a href="#">View Details</a>
-                                <a href="#">Delete</a>
-                            </div>`;
+// Save to LocalStorage
+const saveLocalStorage = () => {
+    const recipeCard = {
+        image: thumnail.src || "assets/placeholder.png", // Fallback for missing image
+        title: recipeVal,
+        desc: shortDescVal
+    };
+
+    // Get existing recipes or create an empty array
+    const savedRecipes = JSON.parse(localStorage.getItem("recipes")) || [];
+    savedRecipes.push(recipeCard);
+
+    // Save updated recipes to localStorage
+    localStorage.setItem("recipes", JSON.stringify(savedRecipes));
+
+    // Append the new card to the homepage
+    appendCard(recipeCard);
+    clearForm();
+};
+
+// Append Card to Homepage
+const appendCard = (recipeCard) => {
+    let cardHtml = `<img src="${recipeCard.image}" alt="thumbnail">
+                    <div class="title_gp dp_flex">
+                        <h3>${recipeCard.title}</h3>
+                    </div>
+                    <p>${recipeCard.desc}</p>
+                    <div class="main_card-cta">
+                        <a href="#">View Details</a>
+                        <a href="#">Delete</a>
+                    </div>`;
     let newCard = document.createElement("div");
     newCard.classList.add("main_card");
-    newCard.innerHTML = `${cardHtml}`;
+    newCard.innerHTML = cardHtml;
     main_boxes.appendChild(newCard);
+};
+
+// Load Recipes from LocalStorage on Page Load
+const loadRecipes = () => {
+    const savedRecipes = JSON.parse(localStorage.getItem("recipes")) || [];
+    savedRecipes.forEach(recipe => {
+        appendCard(recipe);
+    });
+};
+
+// Call loadRecipes on page load
+window.addEventListener("DOMContentLoaded", () => {
+    loadRecipes();
+    onLoadCheck();
+});
+
+// clearForm
+const clearForm = () => {
     recipeName.value = "";
     shortDecs.value = "";
     categroies.value = "breakfast";
     difficulty.value = "easy";
-    approxTime.value = "less then 30 mins";
+    approxTime.value = "less than 30 mins";
     thumnail.src = "assets/placeholder.png";
-    ingredientName.forEach((e)=>{
-        if(ingredientElems.childElementCount > 2){
+
+    // Reset ingredients fields
+    ingredientName.forEach((e, index) => {
+        e.value = "";
+        quantityName[index].value = "";
+
+        // Remove extra fields if more than the default count
+        if (index > 1) {
             e.parentElement.remove();
-        }
-        else{
-            e.value = "";
-            e.parentElement.childNodes[2].value = "";
         }
     });
 };
-// onload Check
-const onLoadCheck = () =>{
-    if(main_boxes.childElementCount < 1){
-        main_empty.style.display = "flex";
-        main_content.style.display = "none";
-        main_boxes.style.display = "none";
-    }else{
+
+// onLoad Check
+const onLoadCheck = () => {
+    if (main_boxes.childElementCount > 0) {
         main_empty.style.display = "none";
         main_content.style.display = "flex";
         main_boxes.style.display = "flex";
+    } else {
+        main_empty.style.display = "flex";
+        main_content.style.display = "none";
+        main_boxes.style.display = "none";
     }
-}
-window.addEventListener("DOMContentLoaded", onLoadCheck);
+};
