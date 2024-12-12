@@ -176,13 +176,14 @@ footer{
 /* detailPage */
 #detailPage{width: 100%; height: 100vh; position: fixed; z-index: 9; top: 0; left: 0; background: rgba(0, 0, 0, 0.6); display: flex; align-items: center; justify-content: center; transition: opacity 0.3s ease;opacity: 0; visibility: hidden;}
 .detailPage_sec{background: var(--background); width: 40%; height: 95vh; margin-block-start: 5vh; overflow: scroll; border-radius: 12px 12px 0px 0px; position: relative;}
+.detailPage_sec .close_icon{background: #fff; right: 0; top: 0; padding: 5px; border-radius: 0px 0px 0px 4px;}
 .detailPage_sec::-webkit-scrollbar{display: none;}
 .detailPage_sec img{width: 100%; height: 340px; object-fit: cover;}
 .detailPage_content{padding: 24px; flex-direction: column; align-items: start; gap: 24px;}
 .detailPage_content .tag{background: #ffbfb7; padding: 6px 10px; border-radius: 4px; font-size: 14px;}
 .detailPage_content h3{font-size: 32px;}
 .detailPage_content p{font-size: 17px; color: #696767;}
-.points{margin-block-start: 10px; padding: 0px 40px; justify-content: space-between; width: 100%; flex-wrap: wrap;}
+.points{margin-block-start: 10px; padding: 0px 30px; justify-content: space-between; width: 100%; flex-wrap: wrap;}
 .point_card{gap: 14px;}
 .point_card svg{width: 34px; color: #696767;}
 .point_card-content{text-align: center;}
@@ -201,6 +202,7 @@ footer{
     .container{
         width: 999px;
     }
+    .detailPage_sec{width: 65%;}
 }
 @media screen and (max-width: 999px) {
     .container{
@@ -224,7 +226,6 @@ footer{
     .recipeForm-form{padding: 0px; width: 90%;}
     .recipeForm-sec{margin-block-start: 0vh;}
     #hero{margin-block-start: 20px;}
-    .detailPage_sec{width: 65%;}
     .points{padding: 0px 8px; gap: 20px;}
 }
 @media screen and (max-width: 768px){
@@ -239,7 +240,7 @@ footer{
     .main_card{width: 48%;}
     .recipeForm-sec{width: 100%; height: 98vh; }
     .detailPage_sec{width: 75%;}
-    .detailPage_content h3{font-size: 28px;}
+    .detailPage_content h3, .ingredient_portion h4{font-size: 28px;}
     .recipeForm-image{margin-top: 34px; width: 80%;}
     .recipeForm-form{width: 100%; padding: 0px 0px 34px 0px;}
     .recipe_form-gp input, .recipe_form-gp textarea, .recipe_form-gp select, .recipe_formSub-con{ width: 100%;}

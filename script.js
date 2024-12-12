@@ -179,8 +179,9 @@ const deleteRecipeCard = (theTarget) =>{
                     searchItem.splice(cardIndex, 1);
                     localStorage.setItem("recipes", JSON.stringify(searchItem));
                     theTarget.remove();
+                    ingredient_portion.innerHTML = "";
                     onLoadCheck();
-                }
+                }else{ingredient_portion.innerHTML = ""};
             }
         }
     });
@@ -238,13 +239,10 @@ const clearForm = () => {
     difficulty.value = "easy";
     approxTime.value = "less than 30 mins";
     thumnail.src = "assets/placeholder.png";
-
-    // Reset ingredients fields
     ingredientName.forEach((e, index) => {
         e.value = "";
         quantityName[index].value = "";
 
-        // Remove extra fields if more than the default count
         if (index >= 1) {
             e.parentElement.remove();
         }
