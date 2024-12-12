@@ -251,4 +251,6 @@ footer{
     .hero_sec h1 p{font-size: 24px; font-family: "Poppins", sans-serif; font-weight: 600; text-transform: uppercase;}
     .footer_sec{flex-direction: column; gap: 16px;}
     .detailPage_sec{width: 100%;}
+    .point_card-content{text-align: inherit;}
+    .detailPage_sec img{height: 260px;}
 }

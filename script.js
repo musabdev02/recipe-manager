@@ -55,7 +55,10 @@ const closeRecipeForm = () =>{
     }, 200)
 };
 // detailPage
-closeDetail.addEventListener("click", ()=>{detailPage.style.visibility = "hidden"; detailPage.style.opacity = 0;})
+closeDetail.addEventListener("click", ()=>{
+    detailPage.style.visibility = "hidden"; detailPage.style.opacity = 0;
+    ingredient_portion.innerHTML = "";
+});
 uploadImage.addEventListener("click", () =>{
     fileInput.click();
 });
@@ -196,23 +199,15 @@ const getFullDetails = (theTarget) =>{
                 detailApproxTIme.textContent = e.takenTime;
                 detailCategory.textContent = e.category;
                 
-                // 
-                let getVal;
-                let ingDel_gp = `<p>${getVal}</p> <span>250mg</span>`;
-                let newInDel_card = document.createElement("div");
-                newInDel_card.classList.add("ing_portion-gp");
-                newInDel_card.innerHTML = ingDel_gp;
-                e.allIngredients.forEach((e)=>{
-                    getVal = e;
-                    console.log(getVal)
-                    ingredient_portion.appendChild(newInDel_card);
+                //
+                e.allIngredients.forEach((ingredient, index) => {
+                    let newElem = document.createElement("div");
+                    newElem.classList.add("ing_portion-gp");
+                
+                    newElem.innerHTML = `<p>${ingredient}</p><span>${e.allQuantities[index]}</span>`;
+                    ingredient_portion.appendChild(newElem);
                 });
-
-                // const addIng_quantities = (theTarget) =>{
-                //     theTarget.forEach((e)=>{
-                //      let ingDel_gp = `<p>${e}</p> <span>250mg</span>`;
-                //     });
-                // }
+                
             };
         });
         if(e.target.innerText === "View Details"){
