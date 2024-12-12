@@ -27,7 +27,7 @@ const detailDesc = document.getElementById("detailDesc");
 const detailDiffi = document.getElementById("detailDiffi");
 const detailApproxTIme = document.getElementById("detailApproxTIme");
 const detailCategory = document.getElementById("detailCategory");
-const ingredient_portion = document.querySelector(".ingredient_portion");
+const ingredient_portion = document.querySelector(".ing_portion-group");
 
 // others
 let recipeVal;
@@ -213,9 +213,9 @@ const getFullDetails = (theTarget) =>{
         if(e.target.innerText === "View Details"){
             detailPage.style.visibility = "visible";
             detailPage.style.opacity = 1;
-        }
+        };
     });
-}
+};
 // Load Recipes from LocalStorage on Page Load
 const loadRecipes = () => {
     const savedRecipes = JSON.parse(localStorage.getItem("recipes")) || [];

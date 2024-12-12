@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Recipe Manager</title>
+    <title>RecipePro - Your Personal Recipe Ingredient Manager</title>
     <!-- CSS -->
     <link rel="stylesheet" href="style.css">
 </head>
@@ -23,6 +23,11 @@
                         <button class="btn-primary" onclick="openRecipeForm()"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
                             <path stroke-linecap="round" stroke-linejoin="round" d="m16.862 4.487 1.687-1.688a1.875 1.875 0 1 1 2.652 2.652L10.582 16.07a4.5 4.5 0 0 1-1.897 1.13L6 18l.8-2.685a4.5 4.5 0 0 1 1.13-1.897l8.932-8.931Zm0 0L19.5 7.125M18 14v4.75A2.25 2.25 0 0 1 15.75 21H5.25A2.25 2.25 0 0 1 3 18.75V8.25A2.25 2.25 0 0 1 5.25 6H10" />
                           </svg> Add Recipe</button>
+                    </div>
+                    <div class="nav_sec-open">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="size-6">
+                            <path fill-rule="evenodd" d="M3 6.75A.75.75 0 0 1 3.75 6h16.5a.75.75 0 0 1 0 1.5H3.75A.75.75 0 0 1 3 6.75ZM3 12a.75.75 0 0 1 .75-.75h16.5a.75.75 0 0 1 0 1.5H3.75A.75.75 0 0 1 3 12Zm0 5.25a.75.75 0 0 1 .75-.75h16.5a.75.75 0 0 1 0 1.5H3.75a.75.75 0 0 1-.75-.75Z" clip-rule="evenodd" />
+                        </svg>
                     </div>
                 </div>
             </div>
@@ -190,14 +195,20 @@
                     </div>
                     <div class="ingredient_portion">
                         <h4>Ingredients:</h4>
+                        <div class="ing_portion-group">
                         <!-- <div class="ing_portion-gp">
                             <p>Arboio rice</p>
                             <span>250mg</span>
                         </div> -->
+                        </div>
                     </div>
                </div>
             </div>
           </section>
+          <!-- notiToast -->
+           <section id="notiToast">
+            <h3>You deleted recipe!</h3>
+           </section>
     </div>
 
     <!-- JS -->
