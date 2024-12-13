@@ -1,4 +1,4 @@
-# Recipe Ingredient Manager
+# Recipe Ingredient Manager 🍽️
 
 ## Description
 The Recipe Ingredient Manager is a web-based application that allows users to:
@@ -98,5 +98,5 @@ This project is licensed under the [MIT License](LICENSE).
 ## Contact
 For questions or support, please contact:
 - **Email**: musabdev65@gmail.com
-- **GitHub**: [Your GitHub Profile](https://github.com/musabdev02)
+- **GitHub**: [View Profile](https://github.com/musabdev02)
 
